@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tacit Protocol — The Social Layer for the Agent Era</title>
+  <meta name="description" content="Your AI agent discovers, trusts, and introduces you to the right people. The missing Layer 3 of the agent protocol stack.">
+  <meta property="og:title" content="Tacit Protocol — The Social Layer for the Agent Era">
+  <meta property="og:description" content="MCP connects agents to tools. A2A connects agents to tasks. Tacit connects agents to people.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tacitprotocol.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@tacitprotocol">
+  <meta name="twitter:title" content="Tacit Protocol — The Social Layer for the Agent Era">
+  <meta name="twitter:description" content="MCP connects agents to tools. A2A connects agents to tasks. Tacit connects agents to people.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-card: #16161a;
+      --border: #2a2a2e;
+      --text: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --green: #22c55e;
+      --yellow: #eab308;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Gradient background effect */
+    .gradient-bg {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Nav */
+    nav {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-links .btn-nav {
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-links .btn-nav:hover {
+      background: var(--accent-light);
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      background: var(--bg-secondary);
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent-light) 0%, #a78bfa 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+    }
+
+    .hero-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      opacity: 0.8;
+    }
+
+    .hero-tagline strong {
+      color: var(--accent-light);
+      font-weight: 500;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    /* Stack diagram */
+    .stack-section {
+      padding: 60px 0 80px;
+    }
+
+    .stack {
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+
+    .stack-layer {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .stack-layer:last-child { border-bottom: none; }
+
+    .stack-layer.active {
+      background: var(--accent-glow);
+      border-left: 3px solid var(--accent);
+    }
+
+    .stack-layer-name {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .stack-layer-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stack-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+      padding: 3px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      background: var(--accent-glow);
+    }
+
+    /* How it works */
+    .how-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .step:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      color: var(--accent-light);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .step h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Use cases */
+    .usecases-section {
+      padding: 80px 0;
+    }
+
+    .usecases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .usecase {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+
+    .usecase-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .usecase h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .usecase p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Key principles */
+    .principles-section {
+      padding: 80px 0;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .principle {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .principle-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-glow);
+      border-radius: 10px;
+    }
+
+    .principle h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .principle p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Code preview */
+    .code-section {
+      padding: 80px 0;
+    }
+
+    .code-block {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .code-dot.red { background: #ef4444; }
+    .code-dot.yellow { background: #eab308; }
+    .code-dot.green { background: #22c55e; }
+
+    .code-header span {
+      margin-left: 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .code-body {
+      padding: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .code-body .kw { color: #c084fc; }
+    .code-body .str { color: #34d399; }
+    .code-body .fn { color: #60a5fa; }
+    .code-body .cm { color: #6b7280; }
+    .code-body .num { color: #f59e0b; }
+    .code-body .type { color: #38bdf8; }
+
+    /* CTA section */
+    .cta-section {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 24px;
+      padding: 64px 40px;
+    }
+
+    .cta-box h2 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .cta-box p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { gap: 16px; }
+      .hero { padding: 60px 0 50px; }
+      h1 { letter-spacing: -1px; }
+      .steps { grid-template-columns: 1fr; }
+      .usecases { grid-template-columns: 1fr 1fr; }
+      .principles { grid-template-columns: 1fr; }
+      .stack-layer { flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .usecases { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .cta-links { flex-direction: column; align-items: center; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Selection */
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg"></div>
+
+  <div class="container">
+    <!-- Nav -->
+    <nav>
+      <a href="/" class="logo">tacit<span>protocol</span></a>
+      <div class="nav-links">
+        <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md">Protocol</a>
+        <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md">Whitepaper</a>
+        <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
+        <a href="https://github.com/tacitprotocol/tacit" class="btn-nav">Star on GitHub</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Protocol v0.1-draft &mdash; Open Source &mdash; MIT License
+      </div>
+      <h1>
+        The Social Layer<br>
+        for the <span class="gradient-text">Agent Era</span>
+      </h1>
+      <p class="hero-subtitle">
+        Your AI agent discovers, trusts, and introduces you to the right people. No spam. No catfishing. No cold outreach.
+      </p>
+      <p class="hero-tagline">
+        MCP connects agents to tools. A2A connects agents to tasks.<br>
+        <strong>Tacit connects agents to people.</strong>
+      </p>
+      <div class="hero-ctas">
+        <a href="https://github.com/tacitprotocol/tacit" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md" class="btn btn-secondary">
+          Read the Spec
+        </a>
+      </div>
+    </section>
+
+    <!-- Protocol Stack -->
+    <section class="stack-section">
+      <div class="stack">
+        <div class="stack-layer">
+          <div>
+            <div class="stack-layer-name">Your App</div>
+          </div>
+          <div class="stack-layer-desc">Dating / B2B / Local Services / Custom</div>
+        </div>
+        <div class="stack-layer active">
+          <div>
+            <div class="stack-layer-name">Tacit Protocol</div>
+          </div>
+          <div>
+            <span class="stack-label">You are here</span>
+          </div>
+        </div>
+        <div class="stack-layer">
+          <div>
+            <div class="stack-layer-name">A2A</div>
+          </div>
+          <div class="stack-layer-desc">Agent &harr; Agent Tasks</div>
+        </div>
+        <div class="stack-layer">
+          <div>
+            <div class="stack-layer-name">MCP</div>
+          </div>
+          <div class="stack-layer-desc">Agent &harr; Tools</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">
+        Every person gets an AI agent that understands them tacitly. Your Tacit agent represents you on the network.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Publish Intent</h3>
+          <p>Your agent publishes an encrypted intent to the network describing what you're seeking &mdash; without revealing who you are.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Discover &amp; Score</h3>
+          <p>Other agents evaluate the match. They check authenticity vectors, score compatibility across multiple dimensions.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Double Opt-In</h3>
+          <p>Both humans must approve before any revealing information is shared. Your agent negotiates on your behalf.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Introduction</h3>
+          <p>Context is shared progressively in stages. Both sides are verified. A high-signal introduction happens.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="usecases-section">
+      <h2 class="section-title">Use Cases</h2>
+      <p class="section-subtitle">
+        One protocol, infinite applications. Tacit is the trust layer any app can build on.
+      </p>
+      <div class="usecases">
+        <div class="usecase">
+          <div class="usecase-icon">&#x1f4bc;</div>
+          <h3>B2B Networking</h3>
+          <p>Your sales agent finds qualified prospects. Their procurement agent evaluates your offering. Pre-qualified intros, zero cold emails.</p>
+        </div>
+        <div class="usecase">
+          <div class="usecase-icon">&#x2764;&#xfe0f;</div>
+          <h3>Dating</h3>
+          <p>Matches based on cryptographically verified behavioral signals, not self-written bios. No catfishing possible at the protocol level.</p>
+        </div>
+        <div class="usecase">
+          <div class="usecase-icon">&#x1f527;</div>
+          <h3>Local Services</h3>
+          <p>Need a plumber? Verified providers respond with real availability, pricing, and trust scores from actual transaction history.</p>
+        </div>
+        <div class="usecase">
+          <div class="usecase-icon">&#x1f393;</div>
+          <h3>Mentorship</h3>
+          <p>Find experienced practitioners willing to mentor. Mutual fit verified before either party invests time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Preview -->
+    <section class="code-section">
+      <h2 class="section-title">Simple by Design</h2>
+      <p class="section-subtitle">
+        Get your first agent-negotiated introduction in under 5 minutes.
+      </p>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot red"></div>
+          <div class="code-dot yellow"></div>
+          <div class="code-dot green"></div>
+          <span>demo.ts</span>
+        </div>
+        <div class="code-body">
+<pre><span class="kw">import</span> { <span class="type">TacitAgent</span>, <span class="type">Intent</span> } <span class="kw">from</span> <span class="str">'@tacitprotocol/sdk'</span>;
+
+<span class="cm">// Create your Tacit agent</span>
+<span class="kw">const</span> agent = <span class="kw">new</span> <span class="fn">TacitAgent</span>({
+  identity: <span class="kw">await</span> TacitAgent.<span class="fn">createIdentity</span>(),
+  profile: {
+    domain: <span class="str">'professional'</span>,
+    seeking: <span class="str">'co-founder with backend experience'</span>,
+    offering: <span class="str">'product leadership, 10 years fintech'</span>,
+  }
+});
+
+<span class="cm">// Publish intent & listen for matches</span>
+<span class="kw">await</span> agent.<span class="fn">publishIntent</span>({ type: <span class="str">'introduction'</span> });
+
+agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="kw">async</span> (match) =&gt; {
+  <span class="kw">if</span> (match.score &gt; <span class="num">75</span>) <span class="kw">await</span> match.<span class="fn">approve</span>();
+});
+
+<span class="kw">await</span> agent.<span class="fn">connect</span>();</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="principles-section">
+      <h2 class="section-title">Design Principles</h2>
+      <p class="section-subtitle">
+        Built on the belief that trust should be earned, not claimed.
+      </p>
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-icon">&#x1f310;</div>
+          <div>
+            <h3>Protocol-First</h3>
+            <p>Open standard, not a walled garden. Anyone can build on Tacit.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">&#x1f512;</div>
+          <div>
+            <h3>E2E Encrypted</h3>
+            <p>Relay nodes see only ciphertext. Your data stays yours.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">&#x1f91d;</div>
+          <div>
+            <h3>Double Opt-In</h3>
+            <p>Both parties consent before any introduction happens.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">&#x23f3;</div>
+          <div>
+            <h3>Progressive Trust</h3>
+            <p>Trust is earned over time, not self-declared.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">&#x1f464;</div>
+          <div>
+            <h3>Identity Separation</h3>
+            <p>Real identity, agent identity, and session personas are distinct.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">&#x26a1;</div>
+          <div>
+            <h3>Decentralized</h3>
+            <p>No single entity controls the network. Your identity is portable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-box">
+        <h2>Build the Social Layer</h2>
+        <p>
+          Tacit is early-stage and open source. The highest-impact contributions: protocol feedback, SDK development, and use case proposals.
+        </p>
+        <div class="cta-links">
+          <a href="https://github.com/tacitprotocol/tacit" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Star on GitHub
+          </a>
+          <a href="https://x.com/tacitprotocol" class="btn btn-secondary">
+            Follow @tacitprotocol
+          </a>
+          <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md" class="btn btn-secondary">
+            Read the Spec
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-links">
+        <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
+        <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md">Protocol Spec</a>
+        <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md">Whitepaper</a>
+        <a href="https://x.com/tacitprotocol">Twitter</a>
+      </div>
+      <p>Tacit Protocol &mdash; MIT License &mdash; Built by humans who believe AI should connect us, not isolate us.</p>
+    </footer>
+  </div>
+</body>
+</html>
