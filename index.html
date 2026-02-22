@@ -10,6 +10,8 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#6366f1">
   <link rel="canonical" href="https://tacitprotocol.com/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Tacit Protocol — The Trust Layer for the Internet">
@@ -1523,6 +1525,164 @@
       background: var(--accent);
       color: white;
     }
+
+    /* Roadmap */
+    .roadmap-section { padding: 80px 0; }
+
+    .roadmap-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .roadmap-timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-light), rgba(139, 92, 246, 0.3));
+    }
+
+    .roadmap-item {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 40px;
+    }
+
+    .roadmap-item:last-child { margin-bottom: 0; }
+
+    .roadmap-dot {
+      position: absolute;
+      left: 14px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      z-index: 1;
+    }
+
+    .roadmap-item.active .roadmap-dot {
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+    }
+
+    .roadmap-item.future .roadmap-dot {
+      border-color: var(--border);
+      background: var(--bg-card);
+    }
+
+    .roadmap-quarter {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+      margin-bottom: 8px;
+    }
+
+    .roadmap-item.future .roadmap-quarter { color: var(--text-secondary); }
+
+    .roadmap-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .roadmap-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .roadmap-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .roadmap-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      color: var(--accent-light);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .roadmap-item.active .roadmap-tag {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    /* FAQ */
+    .faq-section { padding: 80px 0; }
+
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover { border-color: var(--accent); }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--accent-light);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .faq-item.open .faq-question::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
@@ -1537,7 +1697,8 @@
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md">Whitepaper</a>
         <a href="#demo">Demo</a>
         <a href="#agents">Agents</a>
-        <a href="#enterprise">Enterprise</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
         <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
         <a href="#early-access" class="btn-nav">Request Early Access</a>
       </div>
@@ -2155,6 +2316,168 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
           <div>
             <h3>Decentralized &amp; Portable</h3>
             <p>No single entity controls the network. Your identity goes where you go.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="roadmap-section" id="roadmap">
+      <div class="container">
+        <h2 class="section-title">Roadmap</h2>
+        <p class="section-subtitle">From spec to production. Here's where we're headed.</p>
+
+        <div class="roadmap-timeline">
+          <div class="roadmap-item active">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-quarter">Q1 2026 — Now</div>
+            <div class="roadmap-title">Foundation</div>
+            <div class="roadmap-desc">
+              Protocol spec v0.1, TypeScript SDK with DID identity, authenticity vectors,
+              match scoring, intent discovery. CLI scaffolding tool. Landing page and community launch.
+            </div>
+            <div class="roadmap-tags">
+              <span class="roadmap-tag">SDK v0.1</span>
+              <span class="roadmap-tag">Protocol Spec</span>
+              <span class="roadmap-tag">npm Published</span>
+            </div>
+          </div>
+
+          <div class="roadmap-item active">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-quarter">Q2 2026</div>
+            <div class="roadmap-title">Network Goes Live</div>
+            <div class="roadmap-desc">
+              Transport layer with message signing. Relay node for agent-to-agent communication.
+              Persistent identity storage. Two agents can discover each other and exchange proposals
+              over the wire for the first time.
+            </div>
+            <div class="roadmap-tags">
+              <span class="roadmap-tag">Relay Server</span>
+              <span class="roadmap-tag">Message Signing</span>
+              <span class="roadmap-tag">Persistence</span>
+            </div>
+          </div>
+
+          <div class="roadmap-item future">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-quarter">Q3 2026</div>
+            <div class="roadmap-title">Verifiable Credentials</div>
+            <div class="roadmap-desc">
+              Integration with credential issuers (LinkedIn, GitHub, universities).
+              End-to-end encryption via XChaCha20-Poly1305. Key rotation and revocation.
+              Python SDK. Mobile SDK foundations.
+            </div>
+            <div class="roadmap-tags">
+              <span class="roadmap-tag">Credentials</span>
+              <span class="roadmap-tag">E2E Encryption</span>
+              <span class="roadmap-tag">Python SDK</span>
+            </div>
+          </div>
+
+          <div class="roadmap-item future">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-quarter">Q4 2026</div>
+            <div class="roadmap-title">Production &amp; Enterprise</div>
+            <div class="roadmap-desc">
+              Hosted relay infrastructure with SLAs. Admin dashboards. Premium KYC/AML integrations.
+              Agent framework plugins (LangChain, CrewAI, AutoGen). Enterprise pilot programs.
+            </div>
+            <div class="roadmap-tags">
+              <span class="roadmap-tag">Enterprise</span>
+              <span class="roadmap-tag">Hosted Infra</span>
+              <span class="roadmap-tag">Agent Plugins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-subtitle">Common questions about the protocol.</p>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              How is TACIT different from OAuth or SSO?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                OAuth proves you can access an account. TACIT proves you're a real person with a verifiable history.
+                OAuth is about access — TACIT is about trust. Your TACIT identity is portable, decentralized, and
+                compounds over time as you build authentic interactions across platforms.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              What data does the relay server see?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                The relay routes signed message envelopes between agents. It sees metadata (who's talking to whom)
+                but never the contents of introduction proposals or personal data. All sensitive content is
+                end-to-end encrypted between agents. The relay is a mailman, not a reader.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              Can I run my own relay node?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. The relay server is open source under MIT license. Install with
+                <code>npm install @tacitprotocol/relay</code> and run it on your own infrastructure.
+                Agents can connect to any relay — no vendor lock-in.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              What is an Authenticity Vector?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                A multi-dimensional trust score computed from four signals: tenure (how long the identity has existed),
+                consistency (behavioral stability over time), attestations (third-party verifiable credentials), and
+                network trust (quality of interactions with other agents). Unlike self-reported profiles, these
+                signals can't be faked overnight.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              How does this work with AI agent frameworks like MCP or A2A?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                MCP (Model Context Protocol) connects agents to tools. A2A connects agents to tasks.
+                TACIT sits on top as Layer 3 — verifying the humans behind the agents. When your agent
+                needs to trust another agent, TACIT provides the cryptographic proof. Plugins for
+                LangChain, CrewAI, and AutoGen are on the roadmap.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+              Is this blockchain-based?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                No. TACIT uses W3C Decentralized Identifiers (DIDs) and Verifiable Credentials standards,
+                which are blockchain-agnostic. Identity tokens are cryptographically signed but don't require
+                a blockchain. The protocol is designed for low-latency agent communication, not on-chain settlement.
+              </div>
+            </div>
           </div>
         </div>
       </div>
