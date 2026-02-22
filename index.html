@@ -1133,6 +1133,105 @@
       display: none;
     }
 
+    .demo-mutual-accepted {
+      margin-top: 14px;
+      animation: fadeSlideIn 0.5s ease;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .demo-mutual-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      border-radius: 10px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .mutual-icon { font-size: 20px; }
+
+    .demo-intro-message {
+      margin-top: 10px;
+      padding: 14px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+      position: relative;
+    }
+
+    .demo-intro-message::before {
+      content: '"';
+      position: absolute;
+      top: 6px;
+      left: 10px;
+      font-size: 28px;
+      color: var(--accent-light);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .demo-intro-message .intro-sender {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--accent-light);
+      font-size: 12px;
+    }
+
+    .demo-connect-methods {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .connect-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .connect-method {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .connect-method:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+      color: var(--accent-light);
+    }
+
+    .connect-method.selected {
+      border-color: var(--green);
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+    }
+
     #demo-start {
       display: block;
       margin: 0 auto;
@@ -1833,6 +1932,7 @@
                 <option value="commerce">Commerce &amp; Services</option>
                 <option value="local-services">Local Services</option>
                 <option value="healthcare">Healthcare</option>
+                <option value="technology">Technology &amp; AI</option>
               </select>
               <input type="text" id="demo-seeking" placeholder="What are you seeking?" value="technical co-founder">
               <button class="demo-btn demo-btn-primary" id="demo-publish-btn">Publish Intent</button>
@@ -1881,6 +1981,20 @@
             </div>
             <div class="demo-approval-msg" id="demo-approval-msg">
               Connected to <span id="demo-connected-name">Joyce Chen</span>. Waiting for mutual consent...
+            </div>
+            <div class="demo-mutual-accepted" id="demo-mutual-accepted" style="display:none;">
+              <div class="demo-mutual-header">
+                <span class="mutual-icon">&#x1f91d;</span>
+                <span>Mutual consent confirmed! You are now connected.</span>
+              </div>
+              <div class="demo-intro-message" id="demo-intro-message"></div>
+              <div class="demo-connect-methods">
+                <span class="connect-label">Connect via:</span>
+                <button class="connect-method" data-method="video"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Video Call</button>
+                <button class="connect-method" data-method="message"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Encrypted Chat</button>
+                <button class="connect-method" data-method="email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</button>
+                <button class="connect-method" data-method="calendar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Schedule Meeting</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2124,11 +2238,12 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
 
     // Demo profiles per domain
     const PROFILES = {
-      professional: { name: 'Joyce Chen', initials: 'JC', avatar: 'demo/joyce.jpg', score: 91, seeking: 'technical co-founder with AI/ML background', breakdown: [94, 91, 88, 85, 92] },
-      dating: { name: 'William Torres', initials: 'WT', avatar: 'demo/william.jpg', score: 84, seeking: 'genuine connection, shared love of hiking', breakdown: [82, 86, 80, 78, 88] },
-      commerce: { name: 'Priya Sharma', initials: 'PS', avatar: 'demo/priya.jpg', score: 88, seeking: 'verified wholesale supplier for electronics', breakdown: [90, 85, 92, 84, 87] },
-      'local-services': { name: 'Ismail Okafor', initials: 'IO', avatar: 'demo/ismail.jpg', score: 86, seeking: 'licensed electrician with 5+ years experience', breakdown: [84, 88, 90, 82, 86] },
-      healthcare: { name: 'Hardik Patel', initials: 'HP', avatar: 'demo/hardik.jpg', score: 92, seeking: 'board-certified therapist accepting new patients', breakdown: [95, 90, 94, 88, 91] },
+      professional: { name: 'Joyce Chen', initials: 'JC', avatar: 'demo/joyce.jpg', score: 91, seeking: 'technical co-founder with AI/ML background', breakdown: [94, 91, 88, 85, 92], intro: 'Hi there! I noticed your intent — I\'ve been building ML infrastructure for the past 8 years and I\'m looking for my next venture. Would love to explore synergies. Open to a quick call this week?' },
+      dating: { name: 'William Torres', initials: 'WT', avatar: 'demo/william.jpg', score: 84, seeking: 'genuine connection, shared love of hiking', breakdown: [82, 86, 80, 78, 88], intro: 'Hey! Your profile resonated with me — I\'m a huge outdoors person too. I just got back from hiking the Inca Trail. Would love to grab coffee and swap trail stories sometime!' },
+      commerce: { name: 'Priya Sharma', initials: 'PS', avatar: 'demo/priya.jpg', score: 88, seeking: 'verified wholesale supplier for electronics', breakdown: [90, 85, 92, 84, 87], intro: 'Hello! I run a verified wholesale operation with 12 years in consumer electronics. We supply to 200+ retailers across North America. Happy to share our catalog and pricing.' },
+      'local-services': { name: 'Ismail Okafor', initials: 'IO', avatar: 'demo/ismail.jpg', score: 86, seeking: 'licensed electrician with 5+ years experience', breakdown: [84, 88, 90, 82, 86], intro: 'Hi! Licensed master electrician here with 9 years experience. I specialize in residential and light commercial work. Fully insured, great references. When works for a site visit?' },
+      healthcare: { name: 'Hardik Patel', initials: 'HP', avatar: 'demo/hardik.jpg', score: 92, seeking: 'board-certified therapist accepting new patients', breakdown: [95, 90, 94, 88, 91], intro: 'Hello! I\'m a board-certified therapist with 15 years in practice. Currently accepting new patients with availability this month. I\'d be happy to schedule an initial consultation.' },
+      technology: { name: 'Muttee Sheikh', initials: 'MS', avatar: 'demo/muttee.png', score: 97, seeking: 'visionary builders pushing the frontier of AI agents', breakdown: [98, 95, 97, 93, 96], intro: 'Hey! Muttee here — CEO & founder of Tacit Protocol. Love what you\'re building. Let\'s sync on how our trust layer can supercharge your agent stack. Coffee or a quick call — your pick.' },
     };
 
     // Data sources with score boosts and dimension impacts
@@ -2307,6 +2422,9 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
       matchCard.classList.remove('demo-match-card');
       matchCard.style.opacity = '1';
       document.getElementById('demo-approval-msg').style.display = 'none';
+      document.getElementById('demo-mutual-accepted').style.display = 'none';
+      document.getElementById('demo-intro-message').innerHTML = '';
+      document.querySelectorAll('.connect-method').forEach(b => b.classList.remove('selected'));
       document.querySelectorAll('.demo-bar-fill').forEach(f => { f.style.width = '0%'; f.setAttribute('data-target', '0'); });
       document.querySelectorAll('.demo-source-pill').forEach(p => { p.classList.remove('connected', 'verifying'); });
       trustScore = 15;
@@ -2448,16 +2566,49 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
       addLine('<span class="info">Awaiting double opt-in consent...</span>');
 
       // Approve / Decline handlers
-      const approveHandler = () => {
+      const approveHandler = async () => {
         approveBtn.removeEventListener('click', approveHandler);
+        declineBtn.removeEventListener('click', declineHandler);
         addLine('<span class="success">You approved the introduction.</span>');
         addLine('<span class="info">Waiting for mutual consent from ' + profile.name + '\'s agent...</span>');
         document.getElementById('demo-approval-msg').style.display = 'block';
+
+        // Simulate the other party accepting after a delay
+        await wait(3000);
+        if (currentRunId !== runId) return;
+
+        addLine('<span class="success">' + profile.name + '\'s agent approved! Mutual consent established.</span>');
+        addLine('<span class="accent">E2E encrypted channel opened.</span>');
+
+        // Hide waiting msg, show mutual accepted section
+        document.getElementById('demo-approval-msg').style.display = 'none';
+        const mutualEl = document.getElementById('demo-mutual-accepted');
+        mutualEl.style.display = 'block';
+
+        // Show intro message
+        const introMsg = profile.intro || 'Hi! I saw your intent on the Tacit network and our agents matched. I\'d love to connect and explore how we can help each other. Looking forward to chatting!';
+        const introEl = document.getElementById('demo-intro-message');
+        introEl.innerHTML = '<span style="padding-left:16px;">' + introMsg + '</span><span class="intro-sender">— ' + profile.name + ', via Tacit Protocol</span>';
+
+        addLine('<span class="info">Intro message received from ' + profile.name + '</span>');
+        addLine('<span class="prompt">$</span> <span class="success">Connection complete. Choose how to continue the conversation.</span>');
+
+        // Wire up connect method buttons
+        mutualEl.querySelectorAll('.connect-method').forEach(btn => {
+          btn.onclick = () => {
+            mutualEl.querySelectorAll('.connect-method').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const method = btn.dataset.method;
+            const labels = { video: 'Video Call', message: 'Encrypted Chat', email: 'Email', calendar: 'Schedule Meeting' };
+            addLine('<span class="accent">Opening ' + labels[method] + ' with ' + profile.name + '...</span>');
+          };
+        });
       };
       approveBtn.addEventListener('click', approveHandler);
 
       const declineHandler = () => {
         declineBtn.removeEventListener('click', declineHandler);
+        approveBtn.removeEventListener('click', approveHandler);
         addLine('<span class="warn">Introduction declined. No data shared.</span>');
         matchCard.style.opacity = '0.5';
       };
