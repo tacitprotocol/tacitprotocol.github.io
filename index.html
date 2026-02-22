@@ -1088,8 +1088,13 @@
       color: white;
     }
 
-    .demo-btn-primary:hover {
+    .demo-btn-primary:hover:not(:disabled) {
       background: var(--accent-light);
+    }
+
+    .demo-btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .demo-btn-secondary {
@@ -1153,6 +1158,237 @@
       color: var(--text);
     }
 
+    /* Match card avatar + name */
+    .demo-match-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .demo-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+      background: var(--bg-secondary);
+    }
+
+    .demo-avatar-fallback {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+      background: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+
+    .demo-match-info h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .demo-match-info .did-small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* Strengthen Identity card */
+    .demo-strengthen {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .demo-sources-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .demo-source-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .demo-source-pill:hover:not(.connected) {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .demo-source-pill.connected {
+      border-color: var(--green);
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+      cursor: default;
+    }
+
+    .demo-source-pill.gov-id {
+      border-color: #eab308;
+      background: rgba(234, 179, 8, 0.05);
+    }
+
+    .demo-source-pill.gov-id:hover:not(.connected) {
+      border-color: #eab308;
+      background: rgba(234, 179, 8, 0.15);
+    }
+
+    .demo-source-pill.gov-id.connected {
+      border-color: var(--green);
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+    }
+
+    .demo-source-pill svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .demo-source-pill .check-icon {
+      display: none;
+    }
+
+    .demo-source-pill.connected .check-icon {
+      display: inline;
+    }
+
+    .demo-source-pill.connected .source-icon {
+      display: none;
+    }
+
+    .demo-source-pill.verifying {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* Download agent button */
+    .demo-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .demo-download-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* Gov ID modal */
+    .demo-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-modal-overlay.active {
+      display: flex;
+    }
+
+    .demo-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 380px;
+      width: 90%;
+    }
+
+    .demo-modal h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .demo-modal p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .demo-modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .demo-modal-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .demo-modal-option:hover {
+      border-color: #eab308;
+      background: rgba(234, 179, 8, 0.1);
+    }
+
+    .demo-modal-option .modal-icon {
+      font-size: 20px;
+    }
+
+    .demo-modal-close {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      font-size: 13px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .demo-modal-close:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .demo-container { grid-template-columns: 1fr; }
@@ -1170,6 +1406,9 @@
       .onboard-flow { flex-direction: column; align-items: center; }
       .onboard-step { max-width: 100%; }
       .onboard-arrow { transform: rotate(90deg); margin: 0; }
+      .demo-avatar, .demo-avatar-fallback { width: 44px; height: 44px; font-size: 16px; }
+      .demo-sources-grid { gap: 6px; }
+      .demo-source-pill { padding: 6px 10px; font-size: 12px; }
     }
 
     @media (max-width: 480px) {
@@ -1508,25 +1747,79 @@
             <div class="did-display" id="demo-did"></div>
             <div class="demo-trust-score">
               <span class="score-val" id="demo-score-val">15</span>
-              <span class="score-label">/ 100 trust score &mdash; new agent</span>
+              <span class="score-label" id="demo-score-label">/ 100 trust score &mdash; new agent</span>
             </div>
             <div id="demo-dimensions">
               <div class="demo-bar-group">
-                <div class="demo-bar-label"><span>Tenure</span><span class="bar-pct">0%</span></div>
-                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+                <div class="demo-bar-label"><span>Tenure</span><span class="bar-pct" data-dim="tenure">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" id="bar-tenure" data-target="0"></div></div>
               </div>
               <div class="demo-bar-group">
-                <div class="demo-bar-label"><span>Consistency</span><span class="bar-pct">0%</span></div>
-                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+                <div class="demo-bar-label"><span>Consistency</span><span class="bar-pct" data-dim="consistency">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" id="bar-consistency" data-target="0"></div></div>
               </div>
               <div class="demo-bar-group">
-                <div class="demo-bar-label"><span>Attestations</span><span class="bar-pct">0%</span></div>
-                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+                <div class="demo-bar-label"><span>Attestations</span><span class="bar-pct" data-dim="attestations">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" id="bar-attestations" data-target="0"></div></div>
               </div>
               <div class="demo-bar-group">
-                <div class="demo-bar-label"><span>Network Trust</span><span class="bar-pct">0%</span></div>
-                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+                <div class="demo-bar-label"><span>Network Trust</span><span class="bar-pct" data-dim="network">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" id="bar-network" data-target="0"></div></div>
               </div>
+            </div>
+            <button class="demo-download-btn" id="demo-download-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Agent
+            </button>
+          </div>
+
+          <!-- Step 1.5: Strengthen Identity -->
+          <div id="demo-strengthen" class="demo-card demo-strengthen hidden">
+            <h3>Strengthen Your Identity</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Connect data sources to build your trust score</p>
+            <div class="demo-sources-grid" id="demo-sources">
+              <!-- LinkedIn -->
+              <button class="demo-source-pill" data-source="linkedin">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                LinkedIn
+              </button>
+              <!-- GitHub -->
+              <button class="demo-source-pill" data-source="github">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                GitHub
+              </button>
+              <!-- Google -->
+              <button class="demo-source-pill" data-source="google">
+                <svg class="source-icon" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                Google
+              </button>
+              <!-- X -->
+              <button class="demo-source-pill" data-source="x">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                X
+              </button>
+              <!-- Instagram -->
+              <button class="demo-source-pill" data-source="instagram">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                Instagram
+              </button>
+              <!-- Facebook -->
+              <button class="demo-source-pill" data-source="facebook">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                Facebook
+              </button>
+              <!-- Government ID -->
+              <button class="demo-source-pill gov-id" data-source="gov-id">
+                <svg class="source-icon" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                Government ID
+              </button>
             </div>
           </div>
 
@@ -1539,6 +1832,7 @@
                 <option value="dating">Dating &amp; Relationships</option>
                 <option value="commerce">Commerce &amp; Services</option>
                 <option value="local-services">Local Services</option>
+                <option value="healthcare">Healthcare</option>
               </select>
               <input type="text" id="demo-seeking" placeholder="What are you seeking?" value="technical co-founder">
               <button class="demo-btn demo-btn-primary" id="demo-publish-btn">Publish Intent</button>
@@ -1548,10 +1842,16 @@
           <!-- Step 3: Match result -->
           <div id="demo-match" class="demo-card hidden">
             <h3>Match Found</h3>
-            <div class="did-display" id="demo-match-did"></div>
+            <div class="demo-match-header">
+              <div class="demo-avatar-fallback" id="demo-match-avatar">JC</div>
+              <div class="demo-match-info">
+                <h4 id="demo-match-name">Joyce Chen</h4>
+                <div class="did-small" id="demo-match-did"></div>
+              </div>
+            </div>
             <div class="demo-trust-score">
-              <span class="score-val" style="color: var(--green);">87</span>
-              <span class="score-label">/ 100 match score</span>
+              <span class="score-val" id="demo-match-score" style="color: var(--green);">91</span>
+              <span class="score-label">/ 100 trust score</span>
             </div>
             <div class="demo-score-breakdown" id="demo-breakdown">
               <div class="demo-bar-group">
@@ -1580,7 +1880,7 @@
               <button class="demo-btn demo-btn-secondary" id="demo-decline-btn">Decline</button>
             </div>
             <div class="demo-approval-msg" id="demo-approval-msg">
-              Introduction approved. Waiting for mutual consent...
+              Connected to <span id="demo-connected-name">Joyce Chen</span>. Waiting for mutual consent...
             </div>
           </div>
         </div>
@@ -1588,6 +1888,26 @@
 
       <button class="btn btn-primary" id="demo-start">Create Your Agent</button>
       <button id="demo-restart">Reset Demo</button>
+
+      <!-- Gov ID Modal -->
+      <div class="demo-modal-overlay" id="demo-gov-modal">
+        <div class="demo-modal">
+          <h3>Government ID Verification</h3>
+          <p>Select an ID type for simulated verification</p>
+          <div class="demo-modal-options">
+            <button class="demo-modal-option" data-id-type="passport">
+              <span class="modal-icon">&#x1f6c2;</span> Passport Scan
+            </button>
+            <button class="demo-modal-option" data-id-type="drivers-license">
+              <span class="modal-icon">&#x1f4b3;</span> Driver's License
+            </button>
+            <button class="demo-modal-option" data-id-type="national-id">
+              <span class="modal-icon">&#x1f3db;&#xfe0f;</span> National ID
+            </button>
+          </div>
+          <button class="demo-modal-close" id="demo-gov-modal-close">Cancel</button>
+        </div>
+      </div>
     </section>
 
     <!-- Agents Section -->
@@ -1790,35 +2110,63 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
           { name: 'Ed25519' }, true, ['sign', 'verify']
         );
         const raw = new Uint8Array(await crypto.subtle.exportKey('raw', keyPair.publicKey));
-        // Multicodec prefix for Ed25519 public key: 0xed01
         const prefixed = new Uint8Array(2 + raw.length);
         prefixed[0] = 0xed; prefixed[1] = 0x01;
         prefixed.set(raw, 2);
-        return 'did:key:z' + base58btcEncode(prefixed);
+        return { did: 'did:key:z' + base58btcEncode(prefixed), publicKey: btoa(String.fromCharCode(...raw)) };
       } catch (e) {
-        // Fallback if Ed25519 not supported
         const bytes = new Uint8Array(34);
         bytes[0] = 0xed; bytes[1] = 0x01;
         crypto.getRandomValues(bytes.subarray(2));
-        return 'did:key:z' + base58btcEncode(bytes);
+        return { did: 'did:key:z' + base58btcEncode(bytes), publicKey: btoa(String.fromCharCode(...bytes.subarray(2))) };
       }
     }
+
+    // Demo profiles per domain
+    const PROFILES = {
+      professional: { name: 'Joyce Chen', initials: 'JC', avatar: 'demo/joyce.jpg', score: 91, seeking: 'technical co-founder with AI/ML background', breakdown: [94, 91, 88, 85, 92] },
+      dating: { name: 'William Torres', initials: 'WT', avatar: 'demo/william.jpg', score: 84, seeking: 'genuine connection, shared love of hiking', breakdown: [82, 86, 80, 78, 88] },
+      commerce: { name: 'Priya Sharma', initials: 'PS', avatar: 'demo/priya.jpg', score: 88, seeking: 'verified wholesale supplier for electronics', breakdown: [90, 85, 92, 84, 87] },
+      'local-services': { name: 'Ismail Okafor', initials: 'IO', avatar: 'demo/ismail.jpg', score: 86, seeking: 'licensed electrician with 5+ years experience', breakdown: [84, 88, 90, 82, 86] },
+      healthcare: { name: 'Hardik Patel', initials: 'HP', avatar: 'demo/hardik.jpg', score: 92, seeking: 'board-certified therapist accepting new patients', breakdown: [95, 90, 94, 88, 91] },
+    };
+
+    // Data sources with score boosts and dimension impacts
+    const DATA_SOURCES = {
+      linkedin:  { label: 'LinkedIn',  boost: 22, tenure: 30, consistency: 15, attestations: 15, network: 5,  termMsg: 'Connected LinkedIn (account age: 8 years, 500+ connections)' },
+      github:    { label: 'GitHub',    boost: 15, tenure: 20, consistency: 15, attestations: 10, network: 5,  termMsg: 'Connected GitHub (account age: 6 years, 247 contributions)' },
+      google:    { label: 'Google',    boost: 10, tenure: 15, consistency: 15, attestations: 0,  network: 5,  termMsg: 'Connected Google (account age: 12 years, verified email)' },
+      x:         { label: 'X',         boost: 8,  tenure: 5,  consistency: 15, attestations: 0,  network: 5,  termMsg: 'Connected X (account age: 4 years, 1.2K followers)' },
+      instagram: { label: 'Instagram', boost: 5,  tenure: 5,  consistency: 15, attestations: 0,  network: 5,  termMsg: 'Connected Instagram (account age: 5 years, 890 followers)' },
+      facebook:  { label: 'Facebook',  boost: 5,  tenure: 5,  consistency: 15, attestations: 0,  network: 5,  termMsg: 'Connected Facebook (account age: 11 years, 430 friends)' },
+      'gov-id':  { label: 'Government ID', boost: 15, tenure: 0, consistency: 0, attestations: 40, network: 5, termMsg: null },
+    };
+
+    // State
+    let currentRunId = 0;
+    let trustScore = 15;
+    let dims = { tenure: 0, consistency: 0, attestations: 0, network: 0 };
+    let connectedSources = [];
+    let agentDid = '';
+    let agentPublicKey = '';
 
     const output = document.getElementById('demo-output');
     const startBtn = document.getElementById('demo-start');
     const restartBtn = document.getElementById('demo-restart');
     const identityCard = document.getElementById('demo-identity');
+    const strengthenCard = document.getElementById('demo-strengthen');
     const intentCard = document.getElementById('demo-intent');
     const matchCard = document.getElementById('demo-match');
     const publishBtn = document.getElementById('demo-publish-btn');
     const approveBtn = document.getElementById('demo-approve-btn');
     const declineBtn = document.getElementById('demo-decline-btn');
+    const downloadBtn = document.getElementById('demo-download-btn');
+    const govModal = document.getElementById('demo-gov-modal');
+    const govModalClose = document.getElementById('demo-gov-modal-close');
 
-    let running = false;
-
-    function addLine(html, cls) {
+    function addLine(html) {
       const div = document.createElement('div');
-      div.className = 'line ' + (cls || '');
+      div.className = 'line';
       div.innerHTML = html;
       output.appendChild(div);
       output.scrollTop = output.scrollHeight;
@@ -1826,111 +2174,300 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
 
     function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-    function showCard(el) {
-      el.classList.remove('hidden');
-    }
+    function showCard(el) { el.classList.remove('hidden'); }
+    function hideCard(el) { el.classList.add('hidden'); }
 
     function animateBars(container) {
-      const fills = container.querySelectorAll('.demo-bar-fill');
-      fills.forEach((fill, i) => {
+      container.querySelectorAll('.demo-bar-fill').forEach((fill, i) => {
         const target = fill.getAttribute('data-target');
         setTimeout(() => { fill.style.width = target + '%'; }, i * 150);
       });
     }
 
+    function updateScoreDisplay(newScore, animate) {
+      const el = document.getElementById('demo-score-val');
+      const label = document.getElementById('demo-score-label');
+      if (animate) {
+        const start = trustScore;
+        const diff = newScore - start;
+        const duration = 600;
+        const startTime = performance.now();
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(start + diff * eased);
+          el.textContent = current;
+          if (current >= 70) el.style.color = 'var(--green)';
+          else if (current >= 40) el.style.color = 'var(--yellow)';
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = newScore;
+      }
+      trustScore = newScore;
+      if (trustScore >= 70) label.textContent = '/ 100 trust score — verified';
+      else if (trustScore >= 40) label.textContent = '/ 100 trust score — building trust';
+      else label.textContent = '/ 100 trust score — new agent';
+    }
+
+    function updateDimBars() {
+      ['tenure', 'consistency', 'attestations', 'network'].forEach(dim => {
+        const val = Math.min(dims[dim], 100);
+        const bar = document.getElementById('bar-' + dim);
+        const pct = document.querySelector('[data-dim="' + dim + '"]');
+        if (bar) { bar.setAttribute('data-target', val); bar.style.width = val + '%'; }
+        if (pct) pct.textContent = val + '%';
+      });
+    }
+
+    async function connectSource(source, runId) {
+      if (currentRunId !== runId) return;
+      if (connectedSources.includes(source)) return;
+
+      const pill = document.querySelector('[data-source="' + source + '"]');
+      if (!pill) return;
+
+      // Gov ID opens modal
+      if (source === 'gov-id') {
+        govModal.classList.add('active');
+        return;
+      }
+
+      const info = DATA_SOURCES[source];
+      pill.classList.add('verifying');
+      addLine('<span class="info">Verifying ' + info.label + '...</span>');
+      await wait(500);
+      if (currentRunId !== runId) return;
+
+      pill.classList.remove('verifying');
+      pill.classList.add('connected');
+      connectedSources.push(source);
+
+      dims.tenure += info.tenure;
+      dims.consistency += info.consistency;
+      dims.attestations += info.attestations;
+      dims.network += info.network;
+      updateDimBars();
+      updateScoreDisplay(trustScore + info.boost, true);
+
+      addLine('<span class="success">' + info.termMsg + '</span>');
+    }
+
+    async function verifyGovId(idType, runId) {
+      if (currentRunId !== runId) return;
+      govModal.classList.remove('active');
+
+      const pill = document.querySelector('[data-source="gov-id"]');
+      pill.classList.add('verifying');
+      addLine('<span class="info">Processing Government ID (' + idType.replace('-', ' ') + ')...</span>');
+      await wait(1200);
+      if (currentRunId !== runId) return;
+
+      pill.classList.remove('verifying');
+      pill.classList.add('connected');
+      connectedSources.push('gov-id');
+
+      const info = DATA_SOURCES['gov-id'];
+      dims.attestations += info.attestations;
+      dims.network += info.network;
+      updateDimBars();
+      updateScoreDisplay(trustScore + info.boost, true);
+
+      addLine('<span class="success">Government ID verified (attestation: ' + idType.replace('-', ' ') + ', issuer: gov.verify)</span>');
+    }
+
+    function downloadAgent() {
+      const data = {
+        did: agentDid,
+        created: new Date().toISOString(),
+        trustScore: trustScore,
+        publicKey: agentPublicKey,
+        sources: connectedSources.slice(),
+        dimensions: { ...dims },
+        version: 'tacit-demo-v1'
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tacit-agent.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      addLine('<span class="accent">Agent exported to tacit-agent.json</span>');
+    }
+
     function resetDemo() {
+      currentRunId++;
       output.innerHTML = '';
-      [identityCard, intentCard, matchCard].forEach(c => c.classList.add('hidden'));
+      [identityCard, strengthenCard, intentCard, matchCard].forEach(c => c.classList.add('hidden'));
       matchCard.classList.remove('demo-match-card');
+      matchCard.style.opacity = '1';
       document.getElementById('demo-approval-msg').style.display = 'none';
-      // Reset bars
-      document.querySelectorAll('.demo-bar-fill').forEach(f => f.style.width = '0%');
+      document.querySelectorAll('.demo-bar-fill').forEach(f => { f.style.width = '0%'; f.setAttribute('data-target', '0'); });
+      document.querySelectorAll('.demo-source-pill').forEach(p => { p.classList.remove('connected', 'verifying'); });
+      trustScore = 15;
+      dims = { tenure: 0, consistency: 0, attestations: 0, network: 0 };
+      connectedSources = [];
+      agentDid = '';
+      agentPublicKey = '';
+      document.getElementById('demo-score-val').textContent = '15';
+      document.getElementById('demo-score-val').style.color = 'var(--yellow)';
+      document.getElementById('demo-score-label').textContent = '/ 100 trust score — new agent';
       startBtn.style.display = 'block';
+      startBtn.disabled = false;
       restartBtn.style.display = 'none';
-      running = false;
+      govModal.classList.remove('active');
     }
 
     async function runDemo() {
-      if (running) return;
-      running = true;
+      startBtn.disabled = true;
+      const runId = ++currentRunId;
+
       startBtn.style.display = 'none';
       restartBtn.style.display = 'block';
-      resetDemo();
-      startBtn.style.display = 'none';
-      restartBtn.style.display = 'block';
-      running = true;
 
       // Step 1: Generate identity
       addLine('<span class="prompt">$</span> <span class="info">Initializing Tacit agent...</span>');
       await wait(600);
+      if (currentRunId !== runId) return;
       addLine('<span class="info">Generating Ed25519 keypair...</span>');
       await wait(800);
+      if (currentRunId !== runId) return;
 
-      const did = await generateDID();
-      const matchDid = await generateDID();
+      const { did, publicKey } = await generateDID();
+      agentDid = did;
+      agentPublicKey = publicKey;
 
       addLine('<span class="accent">Agent created: ' + did.substring(0, 32) + '...</span>');
       document.getElementById('demo-did').textContent = did;
       await wait(400);
+      if (currentRunId !== runId) return;
 
       addLine('<span class="warn">Trust score: 15/100 (new agent)</span>');
       showCard(identityCard);
-      await wait(1200);
+      await wait(600);
+      if (currentRunId !== runId) return;
+
+      // Step 1.5: Strengthen Identity
+      addLine('<span class="prompt">$</span> <span class="info">Connect data sources to strengthen your identity...</span>');
+      showCard(strengthenCard);
+
+      // Wire up source pill clicks for this run
+      document.querySelectorAll('.demo-source-pill').forEach(pill => {
+        const handler = () => connectSource(pill.dataset.source, runId);
+        pill.onclick = handler;
+      });
+
+      // Wire up Gov ID modal options
+      document.querySelectorAll('.demo-modal-option').forEach(opt => {
+        opt.onclick = () => verifyGovId(opt.dataset.idType, runId);
+      });
+
+      // Wire up download button
+      downloadBtn.onclick = downloadAgent;
+
+      await wait(800);
+      if (currentRunId !== runId) return;
 
       // Step 2: Intent form
       addLine('<span class="prompt">$</span> <span class="info">Ready to publish intent.</span>');
       showCard(intentCard);
 
       // Wait for publish click
-      await new Promise(resolve => {
-        publishBtn.addEventListener('click', resolve, { once: true });
+      await new Promise((resolve) => {
+        const handler = () => { publishBtn.removeEventListener('click', handler); resolve(); };
+        publishBtn.addEventListener('click', handler);
       });
+      if (currentRunId !== runId) return;
 
       const domain = document.getElementById('demo-domain').value;
       const seeking = document.getElementById('demo-seeking').value || 'technical co-founder';
+      const profile = PROFILES[domain] || PROFILES.professional;
       const intentId = 'intent:' + did.substring(8, 16) + ':' + Date.now().toString(36);
 
       addLine('<span class="prompt">$</span> <span class="info">Publishing intent...</span>');
       await wait(400);
+      if (currentRunId !== runId) return;
       addLine('<span class="accent">Domain: ' + domain + '</span>');
       addLine('<span class="accent">Seeking: ' + seeking + '</span>');
       await wait(500);
+      if (currentRunId !== runId) return;
       addLine('<span class="accent">Intent ID: ' + intentId + '</span>');
       await wait(300);
       addLine('<span class="info">Broadcasting to network...</span>');
 
       // Step 3: Matching
       await wait(2500);
+      if (currentRunId !== runId) return;
+
+      const matchResult = await generateDID();
+      const matchDid = matchResult.did;
+
       addLine('<span class="success">Match found!</span>');
       await wait(300);
-      addLine('<span class="accent">Peer: ' + matchDid.substring(0, 32) + '...</span>');
-      addLine('<span class="success">Match score: 87/100</span>');
+      if (currentRunId !== runId) return;
+      addLine('<span class="accent">Peer: ' + profile.name + ' (' + matchDid.substring(0, 24) + '...)</span>');
+      addLine('<span class="success">Trust score: ' + profile.score + '/100</span>');
 
-      document.getElementById('demo-match-did').textContent = matchDid;
+      // Update match card with profile data
+      const avatarEl = document.getElementById('demo-match-avatar');
+      // Try loading real avatar, fallback to initials
+      const img = new Image();
+      img.src = profile.avatar;
+      img.onload = function() {
+        avatarEl.outerHTML = '<img class="demo-avatar" id="demo-match-avatar" src="' + profile.avatar + '" alt="' + profile.name + '">';
+      };
+      img.onerror = function() {
+        avatarEl.className = 'demo-avatar-fallback';
+        avatarEl.id = 'demo-match-avatar';
+        avatarEl.textContent = profile.initials;
+      };
+
+      document.getElementById('demo-match-name').textContent = profile.name;
+      document.getElementById('demo-match-did').textContent = matchDid.substring(0, 28) + '...';
+      document.getElementById('demo-match-score').textContent = profile.score;
+      document.getElementById('demo-connected-name').textContent = profile.name;
+
+      // Update breakdown bars with profile-specific values
+      const breakdownLabels = ['Intent Alignment', 'Domain Fit', 'Authenticity', 'Preference', 'Timing'];
+      const breakdownEl = document.getElementById('demo-breakdown');
+      breakdownEl.innerHTML = '';
+      profile.breakdown.forEach((val, i) => {
+        breakdownEl.innerHTML += '<div class="demo-bar-group"><div class="demo-bar-label"><span>' + breakdownLabels[i] + '</span><span class="bar-pct">' + val + '%</span></div><div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="' + val + '"></div></div></div>';
+      });
+
       showCard(matchCard);
       matchCard.classList.add('demo-match-card');
       await wait(200);
-      animateBars(document.getElementById('demo-breakdown'));
+      animateBars(breakdownEl);
 
       addLine('<span class="info">Awaiting double opt-in consent...</span>');
 
       // Approve / Decline handlers
-      approveBtn.addEventListener('click', function handler() {
-        approveBtn.removeEventListener('click', handler);
+      const approveHandler = () => {
+        approveBtn.removeEventListener('click', approveHandler);
         addLine('<span class="success">You approved the introduction.</span>');
-        addLine('<span class="info">Waiting for mutual consent from peer agent...</span>');
+        addLine('<span class="info">Waiting for mutual consent from ' + profile.name + '\'s agent...</span>');
         document.getElementById('demo-approval-msg').style.display = 'block';
-      });
+      };
+      approveBtn.addEventListener('click', approveHandler);
 
-      declineBtn.addEventListener('click', function handler() {
-        declineBtn.removeEventListener('click', handler);
+      const declineHandler = () => {
+        declineBtn.removeEventListener('click', declineHandler);
         addLine('<span class="warn">Introduction declined. No data shared.</span>');
         matchCard.style.opacity = '0.5';
-      });
+      };
+      declineBtn.addEventListener('click', declineHandler);
     }
 
     startBtn.addEventListener('click', runDemo);
     restartBtn.addEventListener('click', resetDemo);
+    govModalClose.addEventListener('click', () => govModal.classList.remove('active'));
+    govModal.addEventListener('click', (e) => { if (e.target === govModal) govModal.classList.remove('active'); });
   })();
   </script>
 </body>
