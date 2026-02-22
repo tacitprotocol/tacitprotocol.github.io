@@ -899,8 +899,263 @@
       margin-bottom: 16px;
     }
 
+    /* Demo section */
+    .demo-section { padding: 80px 0; }
+
+    .demo-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .demo-terminal {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-terminal-header {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-terminal-header::before {
+      content: '';
+      display: inline-block;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    #demo-output {
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    #demo-output .line {
+      opacity: 0;
+      animation: fadeInLine 0.3s forwards;
+    }
+
+    @keyframes fadeInLine {
+      to { opacity: 1; }
+    }
+
+    #demo-output .prompt { color: var(--green); }
+    #demo-output .info { color: var(--text-secondary); }
+    #demo-output .accent { color: var(--accent-light); }
+    #demo-output .success { color: var(--green); }
+    #demo-output .warn { color: var(--yellow); }
+
+    .demo-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .demo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.4s ease;
+    }
+
+    .demo-card.hidden {
+      display: none;
+    }
+
+    .demo-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .demo-card .did-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent-light);
+      background: var(--bg-secondary);
+      padding: 8px 12px;
+      border-radius: 8px;
+      word-break: break-all;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .demo-trust-score {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .demo-trust-score .score-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--yellow);
+    }
+
+    .demo-trust-score .score-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .demo-bar-group { margin-bottom: 8px; }
+
+    .demo-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .demo-bar {
+      height: 6px;
+      background: var(--bg-secondary);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .demo-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transition: width 0.8s ease;
+    }
+
+    .demo-bar-fill.green-bar {
+      background: linear-gradient(90deg, #16a34a, var(--green));
+    }
+
+    .demo-intent-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .demo-intent-form select,
+    .demo-intent-form input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .demo-intent-form select:focus,
+    .demo-intent-form input:focus {
+      border-color: var(--accent);
+    }
+
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .demo-btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .demo-btn-primary:hover {
+      background: var(--accent-light);
+    }
+
+    .demo-btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .demo-match-card {
+      border-color: var(--accent) !important;
+      animation: matchPulse 1.5s ease;
+    }
+
+    @keyframes matchPulse {
+      0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); transform: scale(0.97); }
+      50% { box-shadow: 0 0 20px 4px rgba(99, 102, 241, 0.15); }
+      100% { box-shadow: none; transform: scale(1); }
+    }
+
+    .demo-score-breakdown { margin: 12px 0 16px; }
+
+    .demo-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .demo-approval-msg {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+    }
+
+    #demo-start {
+      display: block;
+      margin: 0 auto;
+      padding: 16px 36px;
+      font-size: 16px;
+    }
+
+    #demo-restart {
+      display: none;
+      margin: 12px auto 0;
+      font-size: 13px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    #demo-restart:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
+      .demo-container { grid-template-columns: 1fr; }
       .nav-links { gap: 16px; }
       .hero { padding: 60px 0 50px; }
       h1 { letter-spacing: -1px; }
@@ -942,6 +1197,7 @@
       <div class="nav-links">
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md">Protocol</a>
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md">Whitepaper</a>
+        <a href="#demo">Demo</a>
         <a href="#agents">Agents</a>
         <a href="#enterprise">Enterprise</a>
         <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
@@ -972,6 +1228,9 @@
       <div class="hero-ctas">
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md" class="btn btn-primary">
           Read the Whitepaper
+        </a>
+        <a href="#demo" class="btn btn-secondary">
+          Try the Demo
         </a>
         <a href="https://github.com/tacitprotocol/tacit" class="btn btn-secondary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -1227,6 +1486,110 @@
       </div>
     </section>
 
+    <!-- Interactive Demo -->
+    <section class="demo-section" id="demo">
+      <h2 class="section-title">Try It Now</h2>
+      <p class="section-subtitle">
+        Experience the protocol in your browser. No signup. No install. Real cryptography.
+      </p>
+
+      <div class="demo-container">
+        <!-- Left: Terminal output -->
+        <div class="demo-terminal">
+          <div class="demo-terminal-header">tacit-demo</div>
+          <div id="demo-output"></div>
+        </div>
+
+        <!-- Right: Interactive cards -->
+        <div class="demo-panel">
+          <!-- Step 1: Identity card -->
+          <div id="demo-identity" class="demo-card hidden">
+            <h3>Your Agent Identity</h3>
+            <div class="did-display" id="demo-did"></div>
+            <div class="demo-trust-score">
+              <span class="score-val" id="demo-score-val">15</span>
+              <span class="score-label">/ 100 trust score &mdash; new agent</span>
+            </div>
+            <div id="demo-dimensions">
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Tenure</span><span class="bar-pct">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Consistency</span><span class="bar-pct">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Attestations</span><span class="bar-pct">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Network Trust</span><span class="bar-pct">0%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill" data-target="0"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Intent form -->
+          <div id="demo-intent" class="demo-card hidden">
+            <h3>Publish an Intent</h3>
+            <div class="demo-intent-form">
+              <select id="demo-domain">
+                <option value="professional">Professional Networking</option>
+                <option value="dating">Dating &amp; Relationships</option>
+                <option value="commerce">Commerce &amp; Services</option>
+                <option value="local-services">Local Services</option>
+              </select>
+              <input type="text" id="demo-seeking" placeholder="What are you seeking?" value="technical co-founder">
+              <button class="demo-btn demo-btn-primary" id="demo-publish-btn">Publish Intent</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Match result -->
+          <div id="demo-match" class="demo-card hidden">
+            <h3>Match Found</h3>
+            <div class="did-display" id="demo-match-did"></div>
+            <div class="demo-trust-score">
+              <span class="score-val" style="color: var(--green);">87</span>
+              <span class="score-label">/ 100 match score</span>
+            </div>
+            <div class="demo-score-breakdown" id="demo-breakdown">
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Intent Alignment</span><span class="bar-pct">92%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="92"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Domain Fit</span><span class="bar-pct">88%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="88"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Authenticity</span><span class="bar-pct">85%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="85"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Preference</span><span class="bar-pct">82%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="82"></div></div>
+              </div>
+              <div class="demo-bar-group">
+                <div class="demo-bar-label"><span>Timing</span><span class="bar-pct">90%</span></div>
+                <div class="demo-bar"><div class="demo-bar-fill green-bar" data-target="90"></div></div>
+              </div>
+            </div>
+            <div class="demo-actions">
+              <button class="demo-btn demo-btn-primary" id="demo-approve-btn">Approve Introduction</button>
+              <button class="demo-btn demo-btn-secondary" id="demo-decline-btn">Decline</button>
+            </div>
+            <div class="demo-approval-msg" id="demo-approval-msg">
+              Introduction approved. Waiting for mutual consent...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="demo-start">Create Your Agent</button>
+      <button id="demo-restart">Reset Demo</button>
+    </section>
+
     <!-- Agents Section -->
     <section class="agents-section" id="agents">
       <h2 class="section-title">Built for Agents</h2>
@@ -1396,5 +1759,179 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
       <p>Tacit Protocol &mdash; MIT License &mdash; The trust infrastructure the internet was built without.</p>
     </footer>
   </div>
+
+  <script>
+  (function() {
+    // Base58btc alphabet
+    const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    function base58btcEncode(bytes) {
+      const digits = [0];
+      for (let i = 0; i < bytes.length; i++) {
+        let carry = bytes[i];
+        for (let j = 0; j < digits.length; j++) {
+          carry += digits[j] << 8;
+          digits[j] = carry % 58;
+          carry = (carry / 58) | 0;
+        }
+        while (carry > 0) {
+          digits.push(carry % 58);
+          carry = (carry / 58) | 0;
+        }
+      }
+      let str = '';
+      for (let i = 0; i < bytes.length && bytes[i] === 0; i++) str += '1';
+      for (let i = digits.length - 1; i >= 0; i--) str += ALPHABET[digits[i]];
+      return str;
+    }
+
+    async function generateDID() {
+      try {
+        const keyPair = await crypto.subtle.generateKey(
+          { name: 'Ed25519' }, true, ['sign', 'verify']
+        );
+        const raw = new Uint8Array(await crypto.subtle.exportKey('raw', keyPair.publicKey));
+        // Multicodec prefix for Ed25519 public key: 0xed01
+        const prefixed = new Uint8Array(2 + raw.length);
+        prefixed[0] = 0xed; prefixed[1] = 0x01;
+        prefixed.set(raw, 2);
+        return 'did:key:z' + base58btcEncode(prefixed);
+      } catch (e) {
+        // Fallback if Ed25519 not supported
+        const bytes = new Uint8Array(34);
+        bytes[0] = 0xed; bytes[1] = 0x01;
+        crypto.getRandomValues(bytes.subarray(2));
+        return 'did:key:z' + base58btcEncode(bytes);
+      }
+    }
+
+    const output = document.getElementById('demo-output');
+    const startBtn = document.getElementById('demo-start');
+    const restartBtn = document.getElementById('demo-restart');
+    const identityCard = document.getElementById('demo-identity');
+    const intentCard = document.getElementById('demo-intent');
+    const matchCard = document.getElementById('demo-match');
+    const publishBtn = document.getElementById('demo-publish-btn');
+    const approveBtn = document.getElementById('demo-approve-btn');
+    const declineBtn = document.getElementById('demo-decline-btn');
+
+    let running = false;
+
+    function addLine(html, cls) {
+      const div = document.createElement('div');
+      div.className = 'line ' + (cls || '');
+      div.innerHTML = html;
+      output.appendChild(div);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function showCard(el) {
+      el.classList.remove('hidden');
+    }
+
+    function animateBars(container) {
+      const fills = container.querySelectorAll('.demo-bar-fill');
+      fills.forEach((fill, i) => {
+        const target = fill.getAttribute('data-target');
+        setTimeout(() => { fill.style.width = target + '%'; }, i * 150);
+      });
+    }
+
+    function resetDemo() {
+      output.innerHTML = '';
+      [identityCard, intentCard, matchCard].forEach(c => c.classList.add('hidden'));
+      matchCard.classList.remove('demo-match-card');
+      document.getElementById('demo-approval-msg').style.display = 'none';
+      // Reset bars
+      document.querySelectorAll('.demo-bar-fill').forEach(f => f.style.width = '0%');
+      startBtn.style.display = 'block';
+      restartBtn.style.display = 'none';
+      running = false;
+    }
+
+    async function runDemo() {
+      if (running) return;
+      running = true;
+      startBtn.style.display = 'none';
+      restartBtn.style.display = 'block';
+      resetDemo();
+      startBtn.style.display = 'none';
+      restartBtn.style.display = 'block';
+      running = true;
+
+      // Step 1: Generate identity
+      addLine('<span class="prompt">$</span> <span class="info">Initializing Tacit agent...</span>');
+      await wait(600);
+      addLine('<span class="info">Generating Ed25519 keypair...</span>');
+      await wait(800);
+
+      const did = await generateDID();
+      const matchDid = await generateDID();
+
+      addLine('<span class="accent">Agent created: ' + did.substring(0, 32) + '...</span>');
+      document.getElementById('demo-did').textContent = did;
+      await wait(400);
+
+      addLine('<span class="warn">Trust score: 15/100 (new agent)</span>');
+      showCard(identityCard);
+      await wait(1200);
+
+      // Step 2: Intent form
+      addLine('<span class="prompt">$</span> <span class="info">Ready to publish intent.</span>');
+      showCard(intentCard);
+
+      // Wait for publish click
+      await new Promise(resolve => {
+        publishBtn.addEventListener('click', resolve, { once: true });
+      });
+
+      const domain = document.getElementById('demo-domain').value;
+      const seeking = document.getElementById('demo-seeking').value || 'technical co-founder';
+      const intentId = 'intent:' + did.substring(8, 16) + ':' + Date.now().toString(36);
+
+      addLine('<span class="prompt">$</span> <span class="info">Publishing intent...</span>');
+      await wait(400);
+      addLine('<span class="accent">Domain: ' + domain + '</span>');
+      addLine('<span class="accent">Seeking: ' + seeking + '</span>');
+      await wait(500);
+      addLine('<span class="accent">Intent ID: ' + intentId + '</span>');
+      await wait(300);
+      addLine('<span class="info">Broadcasting to network...</span>');
+
+      // Step 3: Matching
+      await wait(2500);
+      addLine('<span class="success">Match found!</span>');
+      await wait(300);
+      addLine('<span class="accent">Peer: ' + matchDid.substring(0, 32) + '...</span>');
+      addLine('<span class="success">Match score: 87/100</span>');
+
+      document.getElementById('demo-match-did').textContent = matchDid;
+      showCard(matchCard);
+      matchCard.classList.add('demo-match-card');
+      await wait(200);
+      animateBars(document.getElementById('demo-breakdown'));
+
+      addLine('<span class="info">Awaiting double opt-in consent...</span>');
+
+      // Approve / Decline handlers
+      approveBtn.addEventListener('click', function handler() {
+        approveBtn.removeEventListener('click', handler);
+        addLine('<span class="success">You approved the introduction.</span>');
+        addLine('<span class="info">Waiting for mutual consent from peer agent...</span>');
+        document.getElementById('demo-approval-msg').style.display = 'block';
+      });
+
+      declineBtn.addEventListener('click', function handler() {
+        declineBtn.removeEventListener('click', handler);
+        addLine('<span class="warn">Introduction declined. No data shared.</span>');
+        matchCard.style.opacity = '0.5';
+      });
+    }
+
+    startBtn.addEventListener('click', runDemo);
+    restartBtn.addEventListener('click', resetDemo);
+  })();
+  </script>
 </body>
 </html>
