@@ -682,6 +682,65 @@
       margin-bottom: 32px;
     }
 
+    /* Agents section */
+    .agents-section {
+      padding: 80px 0;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .agent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .agent-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .agent-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .agent-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .agent-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .agent-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .agent-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      color: var(--accent-light);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     /* Code preview */
     .code-section {
       padding: 80px 0;
@@ -848,6 +907,7 @@
       .steps { grid-template-columns: 1fr; }
       .problems-grid { grid-template-columns: 1fr 1fr; }
       .stats-grid { grid-template-columns: 1fr; }
+      .agents-grid { grid-template-columns: 1fr; }
       .business-grid { grid-template-columns: 1fr; }
       .principles { grid-template-columns: 1fr; }
       .auth-grid { grid-template-columns: 1fr 1fr; }
@@ -882,6 +942,7 @@
       <div class="nav-links">
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/PROTOCOL_SPEC.md">Protocol</a>
         <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md">Whitepaper</a>
+        <a href="#agents">Agents</a>
         <a href="#enterprise">Enterprise</a>
         <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
         <a href="#early-access" class="btn-nav">Request Early Access</a>
@@ -1160,6 +1221,59 @@
       <div style="text-align: center; margin-bottom: 4rem;">
         <a href="https://www.npmjs.com/package/create-tacit-agent" class="btn btn-secondary" style="margin-right: 1rem;">npm</a>
         <a href="https://github.com/tacitprotocol/tacit" class="btn btn-primary">View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- Agents Section -->
+    <section class="agents-section" id="agents">
+      <h2 class="section-title">Built for Agents</h2>
+      <p class="section-subtitle">
+        Every AI agent needs a trust layer. Tacit gives yours cryptographic identity, verified credentials, and fraud-proof introductions &mdash; out of the box.
+      </p>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-icon">&#x1f916;</div>
+          <h3>Personal AI Agents</h3>
+          <p>Your agent represents you on the network &mdash; matching, negotiating, and introducing on your behalf. Identity-verified. Privacy-preserving. Always on.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">Claude</span>
+            <span class="agent-tag">GPT</span>
+            <span class="agent-tag">Custom</span>
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">&#x1f3e2;</div>
+          <h3>Enterprise Agents</h3>
+          <p>Deploy fleets of verified agents for sales, recruiting, procurement, and partnership discovery. Every outreach is trust-scored and credential-backed.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">B2B</span>
+            <span class="agent-tag">Sales</span>
+            <span class="agent-tag">Recruiting</span>
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">&#x1f50c;</div>
+          <h3>Platform Integrations</h3>
+          <p>Add Tacit verification to any agent framework &mdash; MCP servers, A2A protocols, LangChain, CrewAI. One SDK call to verify who you're talking to.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">MCP</span>
+            <span class="agent-tag">A2A</span>
+            <span class="agent-tag">LangChain</span>
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-icon">&#x1f6e1;&#xfe0f;</div>
+          <h3>Anti-Fraud Agents</h3>
+          <p>Detect fake identities, bot networks, and impersonation in real-time. Tacit makes Sybil attacks structurally impossible &mdash; not just detectable.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">KYC</span>
+            <span class="agent-tag">Anti-Bot</span>
+            <span class="agent-tag">Compliance</span>
+          </div>
+        </div>
+      </div>
+      <div class="callout-box" style="margin-top: 32px;">
+        <strong>Ship an agent with verified identity in 60 seconds.</strong> Run <code style="background: rgba(99, 102, 241, 0.2); padding: 2px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 14px;">npx create-tacit-agent my-agent</code> and your agent gets a cryptographic DID, trust scoring, and network access &mdash; instantly.
       </div>
     </section>
 
