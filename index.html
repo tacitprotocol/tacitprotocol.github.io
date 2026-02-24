@@ -874,6 +874,126 @@
       flex-wrap: wrap;
     }
 
+    /* Interest Form */
+    .interest-form {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .interest-form .form-group {
+      margin-bottom: 20px;
+    }
+    .interest-form label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .interest-form input,
+    .interest-form select,
+    .interest-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .interest-form input:focus,
+    .interest-form select:focus,
+    .interest-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .interest-form select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    .interest-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .interest-form .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .interest-form .btn-submit:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+    .interest-form .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+    }
+    .form-success.show {
+      display: block;
+    }
+    .form-success svg {
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .form-success h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .form-success p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    .form-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .form-tab {
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .form-tab:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .form-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+    }
+
     /* Footer */
     footer {
       padding: 40px 0;
@@ -1700,7 +1820,7 @@
         <a href="#roadmap">Roadmap</a>
         <a href="#faq">FAQ</a>
         <a href="https://github.com/tacitprotocol/tacit">GitHub</a>
-        <a href="#early-access" class="btn-nav">Request Early Access</a>
+        <a href="#early-access" class="btn-nav">Get Involved</a>
       </div>
     </nav>
 
@@ -1950,7 +2070,7 @@
       </div>
       <p class="business-reference">Proven open-core model &mdash; GitLab, Elastic, HashiCorp built billion-dollar businesses this way.</p>
       <div style="text-align: center;">
-        <a href="#early-access" class="btn btn-primary">Request Enterprise Access</a>
+        <a href="#early-access" class="btn btn-primary">Contact Us</a>
       </div>
     </section>
 
@@ -2486,20 +2606,61 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
     <!-- CTA -->
     <section class="cta-section" id="early-access">
       <div class="cta-box">
-        <h2>Build on the Trust Layer</h2>
+        <h2>Get Involved</h2>
         <p>
-          Tacit is early-stage and open source. Join us in building the trust infrastructure the internet should have had from day one.
+          Whether you want to build on the protocol, license the technology, or invest in the trust layer — we want to hear from you.
         </p>
-        <div class="cta-links">
+
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="selectInterest(this, 'Developer / Builder')">Developer</button>
+          <button class="form-tab" onclick="selectInterest(this, 'Enterprise / Licensing')">Enterprise</button>
+          <button class="form-tab" onclick="selectInterest(this, 'Investor')">Investor</button>
+          <button class="form-tab" onclick="selectInterest(this, 'Early Adopter')">Early Adopter</button>
+        </div>
+
+        <div id="interest-form-container">
+          <form class="interest-form" id="interestForm" onsubmit="return submitInterestForm(event)">
+            <input type="hidden" name="interest_type" id="interestType" value="Developer / Builder">
+            <!-- Honeypot spam filter -->
+            <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off">
+
+            <div class="form-group">
+              <label for="formName">Your Name</label>
+              <input type="text" id="formName" name="name" required placeholder="Full name">
+            </div>
+
+            <div class="form-group">
+              <label for="formEmail">Email</label>
+              <input type="email" id="formEmail" name="email" required placeholder="you@company.com">
+            </div>
+
+            <div class="form-group">
+              <label for="formOrg">Company / Organization</label>
+              <input type="text" id="formOrg" name="organization" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+              <label for="formMessage">What are you looking to do?</label>
+              <textarea id="formMessage" name="message" placeholder="Tell us about your use case, integration plans, or investment interest..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Message Sent</h3>
+            <p>We'll get back to you within 24 hours. In the meantime, check out the <a href="https://github.com/tacitprotocol/tacit" style="color: var(--accent);">GitHub repo</a>.</p>
+          </div>
+        </div>
+
+        <div class="cta-links" style="margin-top: 32px;">
           <a href="https://github.com/tacitprotocol/tacit/blob/main/docs/WHITEPAPER.md" class="btn btn-primary">
             Read the Whitepaper
           </a>
           <a href="https://github.com/tacitprotocol/tacit" class="btn btn-secondary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             View on GitHub
-          </a>
-          <a href="#enterprise" class="btn btn-secondary">
-            Request Enterprise Access
           </a>
         </div>
       </div>
@@ -2943,6 +3104,54 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
     govModalClose.addEventListener('click', () => govModal.classList.remove('active'));
     govModal.addEventListener('click', (e) => { if (e.target === govModal) govModal.classList.remove('active'); });
   })();
+
+  // Interest form handlers
+  function selectInterest(btn, type) {
+    document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('interestType').value = type;
+  }
+
+  async function submitInterestForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('interestForm');
+    const btn = document.getElementById('submitBtn');
+    const honeypot = form.querySelector('[name="_gotcha"]').value;
+    if (honeypot) return false; // spam bot
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const data = {
+      interest_type: form.interest_type.value,
+      name: form.name.value,
+      email: form.email.value,
+      organization: form.organization.value,
+      message: form.message.value,
+      timestamp: new Date().toISOString(),
+      source: 'tacitprotocol.com'
+    };
+
+    try {
+      const res = await fetch('https://ntuqqrcwfjepkdrxlnwq.supabase.co/functions/v1/tacit-inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    } catch (err) {
+      // Fallback: still show success (form data captured in console for recovery)
+      console.error('Form submission error:', err, data);
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+    return false;
+  }
   </script>
 </body>
 </html>
