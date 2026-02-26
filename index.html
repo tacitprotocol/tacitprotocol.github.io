@@ -3143,10 +3143,11 @@ agent.<span class="fn">on</span>(<span class="str">'match'</span>, <span class="
       form.style.display = 'none';
       document.getElementById('formSuccess').classList.add('show');
     } catch (err) {
-      // Fallback: still show success (form data captured in console for recovery)
       console.error('Form submission error:', err, data);
-      form.style.display = 'none';
-      document.getElementById('formSuccess').classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      alert('Something went wrong. Please check your connection and try again.');
+      return false;
     }
 
     btn.disabled = false;
