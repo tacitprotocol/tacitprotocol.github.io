@@ -1,0 +1,30 @@
+# Next.js build artifacts (social app builds to social/ only)
+__next.*
+_not-found*
+*.txt
+!robots.txt
+
+# Route directories that leak from Next.js export
+/agents/
+/callback/
+/dashboard/
+/discover/
+/login/
+/matches/
+/onboarding/
+/profile/
+/settings/
+/_next/
+/_not-found/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Tacit Protocol</title>
+  <meta name="description" content="Terms of Service for Tacit Protocol — the trust layer for the internet.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-card: #16161a;
+      --border: #2a2a2e;
+      --text: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --accent: #6366f1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    p, li { color: var(--text-secondary); margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    .meta { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; font-size: 0.875rem; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back">&larr; Back to Tacit Protocol</a>
+    <h1>Terms of Service</h1>
+    <p class="meta">Last updated: March 3, 2026</p>
+
+    <p>These Terms of Service ("Terms") govern your access to and use of Tacit Protocol's services, including our website (tacitprotocol.com), software development kits (SDKs), relay infrastructure, and social application (collectively, the "Services").</p>
+
+    <p>By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, do not use the Services.</p>
+
+    <h2>1. The Protocol</h2>
+    <p>Tacit Protocol is an open-source protocol for cryptographic identity verification. The protocol specification, SDKs, and core libraries are licensed under the MIT License. You may use, modify, and distribute these freely under the terms of that license.</p>
+
+    <h2>2. Account Registration</h2>
+    <p>To use certain features of the Services, you must create an account. You agree to:</p>
+    <ul>
+      <li>Provide accurate and complete information during registration</li>
+      <li>Maintain the security of your cryptographic keys and account credentials</li>
+      <li>Notify us promptly of any unauthorized use of your account</li>
+      <li>Accept responsibility for all activity that occurs under your account</li>
+    </ul>
+    <p>You are solely responsible for safeguarding your private keys. Tacit Protocol does not store your private keys and cannot recover them if lost.</p>
+
+    <h2>3. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use the Services for any unlawful purpose or in violation of any applicable laws</li>
+      <li>Impersonate any person or entity, or falsely represent your identity</li>
+      <li>Attempt to gain unauthorized access to other users' accounts, keys, or data</li>
+      <li>Interfere with or disrupt the Services, relay nodes, or connected infrastructure</li>
+      <li>Use automated means to scrape, mine, or harvest data from the Services</li>
+      <li>Transmit malware, viruses, or any code of a destructive nature</li>
+      <li>Attempt to reverse-engineer cryptographic trust scores or manipulate the authenticity engine</li>
+    </ul>
+
+    <h2>4. Identity Verification</h2>
+    <p>The Services facilitate cryptographic identity verification through connected accounts and behavioral attestation. Trust scores are algorithmically derived and represent a measure of identity consistency — not a guarantee of a person's character, reliability, or intent.</p>
+    <p>Tacit Protocol makes no warranty regarding the accuracy, completeness, or reliability of trust scores. Users should exercise their own judgment when interacting with others on the network.</p>
+
+    <h2>5. Data and Privacy</h2>
+    <p>Your use of the Services is also governed by our <a href="/privacy.html">Privacy Policy</a>, which describes how we collect, use, and protect your data. Key principles:</p>
+    <ul>
+      <li>Your private keys are generated and stored on your device — we never have access to them</li>
+      <li>Identity tokens are cryptographically signed and verifiable without centralized storage</li>
+      <li>Agents exchange trust tokens, never raw personal data</li>
+      <li>All introductions require double opt-in consent</li>
+    </ul>
+
+    <h2>6. Intellectual Property</h2>
+    <p>The Tacit Protocol specification, SDKs, and core libraries are open source under the MIT License. The Tacit Protocol name, logo, brand assets, and commercial infrastructure (hosted relay, admin dashboards, premium APIs) are proprietary.</p>
+
+    <h2>7. Disclaimer of Warranties</h2>
+    <p>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <p>We do not warrant that the Services will be uninterrupted, error-free, or secure. Cryptographic systems carry inherent risks, and you use the Services at your own risk.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, TACIT PROTOCOL AND ITS CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF PROFITS, OR LOSS OF CRYPTOGRAPHIC KEYS, ARISING OUT OF YOUR USE OF THE SERVICES.</p>
+
+    <h2>9. Termination</h2>
+    <p>We may suspend or terminate your access to the Services at any time for violation of these Terms. You may delete your account at any time through the Settings page. Upon termination:</p>
+    <ul>
+      <li>Your profile and associated data will be deleted from our systems</li>
+      <li>Your DID and cryptographic keys remain under your control</li>
+      <li>Trust history associated with your DID may persist on the network as cryptographic attestations</li>
+    </ul>
+
+    <h2>10. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. We will notify users of material changes through the Services or by email. Continued use after changes constitutes acceptance of the updated Terms.</p>
+
+    <h2>11. Contact</h2>
+    <p>For questions about these Terms, contact us at <a href="mailto:tacitprotocol@proton.me">tacitprotocol@proton.me</a> or open an issue on <a href="https://github.com/tacitprotocol/tacit">GitHub</a>.</p>
+
+    <hr>
+    <p><a href="/">&larr; Back to Tacit Protocol</a> &middot; <a href="/privacy.html">Privacy Policy</a></p>
+  </div>
+</body>
+</html>
